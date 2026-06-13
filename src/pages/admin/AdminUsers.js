@@ -68,7 +68,7 @@ const AdminUsers = () => {
               <p>Create the first user account.</p>
             </div>
           ) : (
-            <table>
+            <table className="responsive-table">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -81,7 +81,7 @@ const AdminUsers = () => {
               <tbody>
                 {users.map(u => (
                   <tr key={u._id}>
-                    <td>
+                    <td data-label="Name">
                       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                         <div style={{ width: 32, height: 32, borderRadius: '50%', background: u.role === 'admin' ? 'var(--accent)' : 'var(--primary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '.8rem', flexShrink: 0 }}>
                           {u.name.charAt(0).toUpperCase()}
@@ -90,14 +90,14 @@ const AdminUsers = () => {
                         {u._id === currentUser?._id && <span className="badge badge-green" style={{ fontSize: '.7rem' }}>You</span>}
                       </div>
                     </td>
-                    <td style={{ color: 'var(--text-2)' }}>{u.email}</td>
-                    <td>
+                    <td data-label="Email" style={{ color: 'var(--text-2)' }}>{u.email}</td>
+                    <td data-label="Role">
                       <span className={`badge ${u.role === 'admin' ? 'badge-purple' : 'badge-blue'}`}>
                         {u.role === 'admin' ? '⭐ Admin' : '👤 User'}
                       </span>
                     </td>
-                    <td style={{ color: 'var(--text-3)' }}>{new Date(u.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                    <td>
+                    <td data-label="Joined" style={{ color: 'var(--text-3)' }}>{new Date(u.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                    <td data-label="Actions">
                       <div className="action-btns">
                         <button className="btn btn-secondary btn-sm" onClick={() => openEdit(u)}>Edit</button>
                         {u._id !== currentUser?._id && (

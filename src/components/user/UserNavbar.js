@@ -30,7 +30,8 @@ const UserNavbar = () => {
             <span />
             <span />
           </button>
-          <NavLink to="/dashboard" className="navbar-brand" onClick={closeMenu}>
+          <div className='logo'>
+            <NavLink to="/dashboard" className="navbar-brand" onClick={closeMenu}>
             <div className="navbar-brand-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                 <polygon points="23 7 16 12 23 17 23 7" />
@@ -39,6 +40,7 @@ const UserNavbar = () => {
             </div>
             <h2>LearnStream</h2>
           </NavLink>
+          </div>
         </div>
 
         <div className="navbar-nav desktop-only">

@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import Sidebar from './Sidebar';
 
 const AdminLayout = ({ title, children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const closeSidebar = () => setSidebarOpen(false);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/admin-example');
+    closeSidebar();
+  };
 
   return (
     <div className="admin-layout">
@@ -25,6 +35,9 @@ const AdminLayout = ({ title, children }) => {
               <h1>{title}</h1>
               <span>{new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
             </div>
+          </div>
+          <div className="admin-topbar-right">
+            <div className="admin-topbar-user">Hi, {user?.name || 'Admin'}</div>
           </div>
         </header>
         <main className="admin-content">{children}</main>
