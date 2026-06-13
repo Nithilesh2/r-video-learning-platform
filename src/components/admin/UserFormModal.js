@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PasswordField from '../common/PasswordField';
 
 const defaultForm = { name: '', email: '', password: '', role: 'user' };
 
@@ -49,10 +50,13 @@ const UserFormModal = ({ user, onSave, onClose }) => {
               <label className="form-label">Email Address *</label>
               <input type="email" name="email" className="form-control" placeholder="user@example.com" value={form.email} onChange={handleChange} />
             </div>
-            <div className="form-group">
-              <label className="form-label">Password {user ? '(leave blank to keep current)' : '*'}</label>
-              <input type="password" name="password" className="form-control" placeholder={user ? 'Leave blank to keep unchanged' : 'Min. 6 characters'} value={form.password} onChange={handleChange} />
-            </div>
+            <PasswordField
+              label={`Password ${user ? '(leave blank to keep current)' : '*'}`}
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder={user ? 'Leave blank to keep unchanged' : 'Min. 6 characters'}
+            />
             <div className="form-group" style={{ marginBottom: 0 }}>
               <label className="form-label">Role *</label>
               <select name="role" className="form-control" value={form.role} onChange={handleChange}>

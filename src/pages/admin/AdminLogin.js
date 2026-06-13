@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import PasswordField from '../../components/common/PasswordField';
 
 const AdminLogin = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -50,10 +51,14 @@ const AdminLogin = () => {
             <label className="form-label">Admin Email</label>
             <input type="email" name="email" className="form-control" placeholder="admin@example.com" value={form.email} onChange={handleChange} autoFocus />
           </div>
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input type="password" name="password" className="form-control" placeholder="••••••••" value={form.password} onChange={handleChange} />
-          </div>
+          <PasswordField
+            label="Password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="••••••••"
+            required
+          />
           <button type="submit" className="btn" style={{ width: '100%', justifyContent: 'center', padding: '12px', background: 'var(--accent)', color: '#fff' }} disabled={loading}>
             {loading ? 'Signing in...' : 'Sign In to Admin'}
           </button>

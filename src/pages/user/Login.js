@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import PasswordField from '../../components/common/PasswordField';
 
 const UserLogin = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -48,13 +49,14 @@ const UserLogin = () => {
               placeholder="you@example.com" value={form.email} onChange={handleChange} autoFocus
             />
           </div>
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input
-              type="password" name="password" className="form-control"
-              placeholder="Enter your password" value={form.password} onChange={handleChange}
-            />
-          </div>
+          <PasswordField
+            label="Password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Enter your password"
+            required
+          />
           <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '12px' }} disabled={loading}>
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
